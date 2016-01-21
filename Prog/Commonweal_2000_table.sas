@@ -18,7 +18,7 @@
 ** Define libraries **;
 %DCData_lib( Census )
 %DCData_lib( NCDB )
-%DCData_lib ( Commweal );
+%DCData_lib ( Bainum );
 %DCData_lib ( RealProp );
 
 
@@ -29,7 +29,7 @@
 %let year_dollar = 2012;
 
 ** Select tracts **;
-filename fimport "K:\Metro\PTatian\DCData\Libraries\Commweal\Data\selected_tracts.csv" lrecl=256;
+filename fimport "K:\Metro\PTatian\DCData\Libraries\Bainum\Data\selected_tracts.csv" lrecl=256;
 
 data selected_tracts;
   infile fimport dsd stopover firstobs=2;
@@ -103,7 +103,7 @@ run;
 ** tk2 **;
 
 %macro run_table(level, lvl);
-ODS html FILE="K:\Metro\PTatian\DCData\Libraries\Commweal\Data\pit_output_2000_&level..XLS";
+ODS html FILE="K:\Metro\PTatian\DCData\Libraries\Bainum\Data\pit_output_2000_&level..XLS";
 proc tabulate data=NCDB_&lvl. noseps missing;
   class &level.;
   var popwithrace_2000 popblacknonhispalone_2000 popwhitenonhispalone_2000 pophisp_2000

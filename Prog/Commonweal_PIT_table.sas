@@ -26,7 +26,7 @@
 %DCData_lib( NCDB )
 %DCData_lib( RealProp )
 %DCData_lib( PresCat )
-%DCData_lib ( Commweal );
+%DCData_lib ( Bainum );
 %DCData_lib ( Police );
 %DCData_lib ( Rod );
 %DCData_lib ( Schools );
@@ -38,7 +38,7 @@
 %let year_dollar = 2012;
 
 ** Select tracts **;
-filename fimport "K:\Metro\PTatian\DCData\Libraries\Commweal\Data\selected_tracts.csv" lrecl=256;
+filename fimport "K:\Metro\PTatian\DCData\Libraries\Bainum\Data\selected_tracts.csv" lrecl=256;
 
 data selected_tracts;
   infile fimport dsd stopover firstobs=2;
@@ -61,10 +61,10 @@ run;
 
 ** Create ACS 2008-2012 summaries for ward and city level **;
 %create_summary_from_tracts( geo=city,
-lib=commweal, data_pre=acs_sf_2008_12_sum, count_vars= b0: b1: b2: c2: , tract_yr=2010, register=n);
+lib=Bainum, data_pre=acs_sf_2008_12_sum, count_vars= b0: b1: b2: c2: , tract_yr=2010, register=n);
 
 %create_summary_from_tracts( geo=ward2012,
-lib=commweal, data_pre=acs_sf_2008_12_sum, count_vars= b0: b1: b2: c2: , tract_yr=2010, register=n);
+lib=Bainum, data_pre=acs_sf_2008_12_sum, count_vars= b0: b1: b2: c2: , tract_yr=2010, register=n);
 
 
 ** Preservation Catalogue**;
@@ -111,7 +111,7 @@ data NLIHC_cat_pr NLIHC_cat_pr_all;
   
 run;
 
-filename fexport "K:\Metro\PTatian\DCData\Libraries\Commweal\Maps\Commweal_all_projects.csv" lrecl=2000;
+filename fexport "K:\Metro\PTatian\DCData\Libraries\Bainum\Maps\Bainum_all_projects.csv" lrecl=2000;
 
 proc export data=NLIHC_cat_pr_all
     outfile=fexport
@@ -121,7 +121,7 @@ run;
 
 filename fexport clear;
 
-filename fexport "K:\Metro\PTatian\DCData\Libraries\Commweal\Maps\Commweal_sel_projects.csv" lrecl=2000;
+filename fexport "K:\Metro\PTatian\DCData\Libraries\Bainum\Maps\Bainum_sel_projects.csv" lrecl=2000;
 
 proc export data=NLIHC_cat_pr
     outfile=fexport
@@ -167,7 +167,7 @@ run;
 data ACS_&lvl.;
 
   merge
-    Commweal.acs_sf_2008_12_sum_&lvl. 
+    Bainum.acs_sf_2008_12_sum_&lvl. 
       (keep=&level. b01001e: b01003e1 B11001e1 B11003e: B11013e: B17001e: B23001e: B03002: B05: B19: B17: B25: /*B15001: B13014:*/ )
     Acs.Acs_2008_12_sum_tr_&lvl. 
       (keep=&level. aggfamilyincome_2008_12 numfamilies_2008_12 Pop25andOverYears_2008_12 Pop25andOverWoutHS_2008_12 Pop25andOverWHS_2008_12 
@@ -444,7 +444,7 @@ run;
 ** tk2 **;
 
 %macro run_table(level, lvl);
-ODS html FILE="K:\Metro\PTatian\DCData\Libraries\Commweal\Data\pit_output_&level..XLS";
+ODS html FILE="K:\Metro\PTatian\DCData\Libraries\Bainum\Data\pit_output_&level..XLS";
 proc tabulate data=ACS_&lvl. noseps missing;
   class &level.;
   var B01001e1 B01001e2 B01001e26 B03002e4 B03002e3 B03002e6 HispanicOther_&year. B03002e12 B05002e13 Pop18andOverYears_&year. Pop18to24ACS_&year. 
@@ -492,7 +492,7 @@ table dcps_present_2013 charter_present_2013, &level;
 run;
 ODS HTML CLOSE; 
 /*additional output for counts*/
-ODS html FILE="K:\Metro\PTatian\DCData\Libraries\Commweal\Data\pit_add_output_&level..XLS";
+ODS html FILE="K:\Metro\PTatian\DCData\Libraries\Bainum\Data\pit_add_output_&level..XLS";
 proc tabulate data=ACS_&lvl. noseps missing;
   class &level.;
   var    

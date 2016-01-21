@@ -33,7 +33,7 @@
 %DCData_lib( NCDB )
 %DCData_lib( RealProp )
 %DCData_lib( PresCat )
-%DCData_lib ( Commweal, local=n)
+%DCData_lib ( Bainum, local=n)
 
 
 
@@ -46,7 +46,7 @@
 
 ** Read tract list **;
 
-filename fimport "K:\Metro\PTatian\DCData\Libraries\Commweal\Data\selected_tracts.csv" lrecl=256;
+filename fimport "K:\Metro\PTatian\DCData\Libraries\Bainum\Data\selected_tracts.csv" lrecl=256;
 
 data selected_tracts;
   infile fimport dsd stopover firstobs=2;
@@ -126,7 +126,7 @@ data NLIHC_cat_pr NLIHC_cat_pr_all;
   
 run;
 
-filename fexport "K:\Metro\PTatian\DCData\Libraries\Commweal\Maps\Commweal_all_projects.csv" lrecl=2000;
+filename fexport "K:\Metro\PTatian\DCData\Libraries\Bainum\Maps\Bainum_all_projects.csv" lrecl=2000;
 
 proc export data=NLIHC_cat_pr_all
     outfile=fexport
@@ -136,7 +136,7 @@ run;
 
 filename fexport clear;
 
-filename fexport "K:\Metro\PTatian\DCData\Libraries\Commweal\Maps\Commweal_sel_projects.csv" lrecl=2000;
+filename fexport "K:\Metro\PTatian\DCData\Libraries\Bainum\Maps\Bainum_sel_projects.csv" lrecl=2000;
 
 proc export data=NLIHC_cat_pr
     outfile=fexport
@@ -354,7 +354,7 @@ run;
 
 options nodate nonumber orientation=landscape;
 
-ods rtf file="K:\Metro\PTatian\DCData\Libraries\Commweal\Prog\Commonweal_2014_10_tr.rtf" style=Styles.Rtf_arial_9pt;
+ods rtf file="K:\Metro\PTatian\DCData\Libraries\Bainum\Prog\Commonweal_2014_10_tr.rtf" style=Styles.Rtf_arial_9pt;
 
 proc tabulate data=ACS_tr format=comma12.0 noseps missing;
   class geo2010;
