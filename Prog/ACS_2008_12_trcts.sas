@@ -1,6 +1,6 @@
 /**************************************************************************
  Program:  ACS_2008_12_trcts.sas
- Library:  Commweal
+ Library:  Bainum
  Project:  NeighborhoodInfo DC
  Author:   S.Zhang
  Created:  10/16/14
@@ -15,12 +15,12 @@
 %include "L:\SAS\Inc\StdLocal.sas";
 
 ** Define libraries **;
-%DCData_lib( Commweal)
+%DCData_lib( Bainum)
 %DCData_lib( ACS, local=n )
 
 data ACS_extract;
 
-  set Commweal.acs_sf_2008_12_sum_tr10  (keep=geo2010 B17001:);
+  set Bainum.acs_sf_2008_12_sum_tr10  (keep=geo2010 B17001:);
   
   kids5pov = sum( B17001e4, B17001e18 );
   kids18pov = sum(OF B17001e4-B17001e9  B17001e18-B17001e23);
@@ -31,7 +31,7 @@ data ACS_extract;
 
 run;
 
-filename fexport "&_dcdata_r_path\Commweal\Raw\ACS_2008_12_mapping.csv" lrecl=256;
+filename fexport "&_dcdata_r_path\Bainum\Raw\ACS_2008_12_mapping.csv" lrecl=256;
 
 proc export data=ACS_extract
     outfile=fexport

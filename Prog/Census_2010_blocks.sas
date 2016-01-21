@@ -1,6 +1,6 @@
 /**************************************************************************
  Program:  Census_2010_blocks.sas
- Library:  Commweal
+ Library:  Bainum
  Project:  NeighborhoodInfo DC
  Author:   P. Tatian
  Created:  10/16/14
@@ -15,7 +15,7 @@
 %include "L:\SAS\Inc\StdLocal.sas";
 
 ** Define libraries **;
-%DCData_lib( Commweal, local=n )
+%DCData_lib( Bainum, local=n )
 %DCData_lib( Census, local=n )
 
 data Census_2010_blocks;
@@ -31,7 +31,7 @@ data Census_2010_blocks;
 
 run;
 
-filename fexport "&_dcdata_r_path\Commweal\Raw\Census_2010_blocks.csv" lrecl=256;
+filename fexport "&_dcdata_r_path\Bainum\Raw\Census_2010_blocks.csv" lrecl=256;
 
 proc export data=Census_2010_blocks
     outfile=fexport

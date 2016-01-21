@@ -19,7 +19,7 @@
 
 ** Define libraries **;
 %DCData_lib( ACS )
-%DCData_lib( Commweal )
+%DCData_lib( Bainum )
 
 %global year year_lbl year_dollar;
 
@@ -73,7 +73,7 @@
 
     ** Census tracts from census tract source: just recopy selected vars **;
     
-    data Commweal.&source_ds_work._COMM&geo_suffix (label="ACS summary, &year_lbl, &source_geo_label source, DC, &geo_label");
+    data Bainum.&source_ds_work._COMM&geo_suffix (label="ACS summary, &year_lbl, &source_geo_label source, DC, &geo_label");
     
       set &source_ds_work (keep=&geo_var &count_vars &moe_vars);
 
@@ -99,7 +99,7 @@
       wgt_id_vars=,
       wgt_wgt_var=popwt,
 	  wgt_prop_var=popwt_prop,
-      out_ds_name=Commweal.&source_ds_work._COMM&geo_suffix,
+      out_ds_name=Bainum.&source_ds_work._COMM&geo_suffix,
       out_ds_label=%str(ACS summary, &year_lbl, &source_geo_label source, DC, &geo_label),
       calc_vars=,
       calc_vars_labels=,
@@ -111,11 +111,11 @@
     
   %end;  
 
-  proc datasets library=Commweal memtype=(data) nolist;
+  proc datasets library=Bainum memtype=(data) nolist;
     modify &source_ds_work._COMM&geo_suffix (sortedby=&geo_var);
   quit;
 
-  %File_info( data=Commweal.&source_ds_work._COMM&geo_suffix, printobs=0 )
+  %File_info( data=Bainum.&source_ds_work._COMM&geo_suffix, printobs=0 )
 
 %mend Summary_geo;
 
