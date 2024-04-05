@@ -1,0 +1,10 @@
+libname general "L:\Libraries\General\Data";
+libname Bainum "L:\Libraries\Bainum\Data";
+libname raw "L:\Libraries\Bainum\Raw";
+options nofmterr; 
+data raw.ward_tract_geog_dc (keep=geo2010 ward2012 pieces_tr10);
+set general.wt_tr10_ward12;
+if ward2012 ~= 7 & ward2012 ~= 8 then delete;
+run;
+proc export data = raw.ward_tract_geog_dc outfile = "L:\Libraries\Bainum\Data\Ward_Crosswalk.csv" dbms = csv replace;
+run;
